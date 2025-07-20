@@ -316,14 +316,6 @@ export default function ChatPage() {
                     <span className="hidden sm:inline">Clear</span>
                   </button>
                 )}
-
-                {/* Settings Button */}
-                <button
-                  className="p-2 text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded-xl transition-all duration-200"
-                  title="Settings"
-                >
-                  <Settings className="w-5 h-5" />
-                </button>
               </div>
             </div>
           </div>
