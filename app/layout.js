@@ -4,7 +4,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Gemini AI Chatbot",
+  title: "AI Chatbot",
   description:
     "A beautiful chatbot powered by Next.js, Tailwind CSS, and the Gemini API.",
 };
