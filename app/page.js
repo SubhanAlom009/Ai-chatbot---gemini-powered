@@ -208,11 +208,12 @@ export default function ChatPage() {
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white font-sans">
       {/* Enhanced Header */}
-      <header className="relative bg-gray-900/50 backdrop-blur-xl border-b border-gray-700/30 shadow-xl flex-shrink-0">
+
+      <header className="relative bg-gray-900/50 backdrop-blur-xl border-b border-gray-700/30 shadow-xl flex-shrink-0 z-50">
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
 
-        <div className="relative p-4">
+        <div className="relative p-4 z-10">
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             {/* Logo & Title */}
             <div className="flex items-center gap-4">
@@ -263,7 +264,7 @@ export default function ChatPage() {
               <div className="flex items-center gap-2">
                 {/* Export Menu */}
                 {messages.length > 0 && (
-                  <div className="relative">
+                  <div className="relative z-50">
                     <button
                       onClick={() => setShowMenu(!showMenu)}
                       className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 rounded-xl transition-all duration-200 border border-blue-500/30 hover:border-blue-500/50"
@@ -276,7 +277,7 @@ export default function ChatPage() {
 
                     {/* Dropdown Menu */}
                     {showMenu && (
-                      <div className="absolute top-full right-0 mt-2 w-48 bg-gray-800/95 backdrop-blur-xl border border-gray-700/50 rounded-xl shadow-2xl z-50">
+                      <div className="absolute top-full right-0 mt-2 w-48 bg-gray-800/95 backdrop-blur-xl border border-gray-700/50 rounded-xl shadow-2xl z-[100]">
                         <div className="p-2">
                           <button
                             onClick={() => {
@@ -315,6 +316,14 @@ export default function ChatPage() {
                     <span className="hidden sm:inline">Clear</span>
                   </button>
                 )}
+
+                {/* Settings Button */}
+                <button
+                  className="p-2 text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded-xl transition-all duration-200"
+                  title="Settings"
+                >
+                  <Settings className="w-5 h-5" />
+                </button>
               </div>
             </div>
           </div>
@@ -341,7 +350,7 @@ export default function ChatPage() {
       {/* Click outside to close menu */}
       {showMenu && (
         <div
-          className="fixed inset-0 z-40"
+          className="fixed inset-0 z-[90]"
           onClick={() => setShowMenu(false)}
         ></div>
       )}
