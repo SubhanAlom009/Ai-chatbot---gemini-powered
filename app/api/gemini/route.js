@@ -1,8 +1,24 @@
 import { NextResponse } from "next/server";
+import { rateLimit } from "@/lib/rateLimit.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 
 export async function POST(req) {
+  // Get client IP for rate limiting
+  const forwarded = req.headers.get("x-forwarded-for");
+  const ip = forwarded ? forwarded.split(",")[0] : "unknown";
+
+  // Rate limit: 5 requests per minute
+  if (!rateLimit(ip, 5, 60000)) {
+    return NextResponse.json(
+      {
+        error:
+          "Rate limit exceeded. Please wait before making another request.",
+      },
+      { status: 429 }
+    );
+  }
+
   if (!process.env.GEMINI_API_KEY) {
     console.error("GEMINI_API_KEY is not set in environment variables");
     return NextResponse.json(
